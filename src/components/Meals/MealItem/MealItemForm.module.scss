@@ -1,5 +1,8 @@
 .form {
-  text-align: right;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
 }
 
 .form button {

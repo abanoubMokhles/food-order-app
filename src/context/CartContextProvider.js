@@ -8,6 +8,13 @@ const DEFAULT_STATE = {
 
 const cartReducer = (prevState, action) => {
   if (action.type === "ADD") {
+    const updatedItems = prevState.items.concat(action.item);
+    const updatedAmount =
+      prevState.totalAmount + action.item.amount * action.item.price;
+    return {
+      items: updatedItems,
+      totalAmount: updatedAmount,
+    };
   }
   if (action.type === "REMOVE") {
   }
