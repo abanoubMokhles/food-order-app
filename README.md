@@ -1,2 +1,2 @@
 # food-order-app
-a food ordering app using react
+a food ordering app using react (in development)
