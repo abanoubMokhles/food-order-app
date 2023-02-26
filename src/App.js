@@ -1,5 +1,7 @@
+import Header from "./components/Layout/Header";
+
 function App() {
-  return <h1>starting over</h1>;
+  return <Header></Header>;
 }
 
 export default App;
