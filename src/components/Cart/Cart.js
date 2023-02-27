@@ -11,18 +11,33 @@ const Cart = (props) => {
     </ul>
   );
 
+  const closeCartHandler = () => {
+    props.onCloseCart();
+  };
+
+  const orderMealsHandler = () => {
+    console.log("Ordering...");
+  };
   return (
-    <Modal>
+    <Modal onCloseCart={closeCartHandler}>
       {cartItems}
       <div className={styles.total}>
         <span>Total</span>
         <span>99.55</span>
       </div>
       <div className={styles.actions}>
-        <button type="button" className={styles["button-alt"]}>
+        <button
+          type="button"
+          className={styles["button-alt"]}
+          onClick={closeCartHandler}
+        >
           Close
         </button>
-        <button type="button" className={styles.button}>
+        <button
+          type="button"
+          className={styles.button}
+          onClick={orderMealsHandler}
+        >
           Order
         </button>
       </div>
