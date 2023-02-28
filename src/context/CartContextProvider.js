@@ -2,28 +2,14 @@ import { useReducer } from "react";
 import CartContext from "./cart-context";
 
 const DEFAULT_CART_STATE = {
-  items: [
-    {
-      id: "i1",
-      name: "Sushi",
-      price: 22,
-      amount: 0,
-      description: "some food 1",
-    },
-    {
-      id: "i2",
-      name: "Burger",
-      price: 15,
-      amount: 0,
-      description: "some food 2",
-    },
-  ],
+  items: [],
   totalAmount: 0,
 };
 const REDUCER_TYPES = {
   addItem: "add",
   removeItem: "remove",
 };
+
 const cartReducer = (state, action) => {
   if (action.type === "add") {
     // concat will return a new array with the added items
