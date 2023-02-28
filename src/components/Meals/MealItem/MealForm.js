@@ -5,33 +5,35 @@ const MealForm = (props) => {
   const [amountIsValid, setAmountIsValid] = useState(false);
   const inputItemRef = useRef(null);
 
+  // Validate Amount and lift it to MealItem component
   const formSubmitHandler = (evt) => {
     evt.preventDefault();
     const mealsAmount = inputItemRef.current.value;
     const mealsAmountNumber = +mealsAmount;
-    console.log(mealsAmount, mealsAmountNumber);
+
     if (
       mealsAmountNumber <= 0 ||
       mealsAmountNumber > 5 ||
-      mealsAmount.trim() === 0
+      mealsAmount.trim().length === 0
     ) {
       setAmountIsValid(true);
       return;
     }
-    props.onAddItem(mealsAmountNumber);
+    props.onAddItemToCart(mealsAmountNumber);
     setAmountIsValid(false);
   };
+
   return (
     <form className={styles.form} onSubmit={formSubmitHandler}>
       <Input
         ref={inputItemRef}
         input={{
-          id: "amount" + props.id,
+          id: "amount_" + props.id,
           type: "number",
-          min: "0",
-          max: "5",
-          step: "1",
-          defaultValue: "1",
+          min: 0,
+          max: 5,
+          step: 1,
+          defaultValue: 1,
         }}
         label="Amount"
       />

@@ -3,34 +3,27 @@ import MealForm from "./MealForm";
 import CartContext from "../../../context/cart-context";
 import styles from "./MealItem.module.scss";
 
-const MealItem = ({ meal }) => {
+const MealItem = (props) => {
   const cartCtx = useContext(CartContext);
-  const price = `$${meal.price}`;
+  const price = `$${props.price}`;
 
-  const addItemHandler = (amount) => {
-    console.log({
-      id: meal.id,
-      name: meal.name,
-      amount: amount,
-      description: meal.description,
-      price: meal.price,
+  const addItemToCartHandler = (commingAmount) => {
+    cartCtx.addItem({
+      id: props.id,
+      name: props.name,
+      amount: commingAmount,
+      description: props.description,
+      price: props.price,
     });
-    // cartCtx.addItem({
-    //   id: meal.id,
-    //   name: meal.name,
-    //   amount: amount,
-    //   description: meal.description,
-    //   price: meal.price,
-    // });
   };
   return (
     <div className={styles.meal}>
       <div>
-        <h3>{meal.name}</h3>
-        <div className={styles.description}>{meal.description}</div>
+        <h3>{props.name}</h3>
+        <div className={styles.description}>{props.description}</div>
         <div className={styles.price}>{price}</div>
       </div>
-      <MealForm id={meal.id} onAddItem={addItemHandler} />
+      <MealForm id={props.id} onAddItemToCart={addItemToCartHandler} />
     </div>
   );
 };
