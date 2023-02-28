@@ -11,6 +11,7 @@ const CartButton = (props) => {
   const clickHandler = () => {
     props.onshowCart();
   };
+
   return (
     <button type="button" className={styles.button} onClick={clickHandler}>
       <span className={styles.icon}>
