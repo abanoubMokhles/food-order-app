@@ -5,7 +5,6 @@ import styles from "./CartButton.module.scss";
 
 const CartButton = (props) => {
   const cartContx = useContext(CartContext);
-  console.log(cartContx.items);
   const totalItems = cartContx.items.reduce((acc, curItem) => {
     return acc + curItem.amount;
   }, 0);

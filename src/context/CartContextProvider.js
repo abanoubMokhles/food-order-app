@@ -11,7 +11,10 @@ const REDUCER_TYPES = {
 };
 
 const cartReducer = (state, action) => {
-  if (action.type === "add") {
+  /*========================
+    When Adding new Items
+  ========================*/
+  if (action.type === REDUCER_TYPES.addItem) {
     // Update total money amount
     const updatedAmount =
       state.totalAmount + action.payload.price * action.payload.amount;
@@ -41,6 +44,36 @@ const cartReducer = (state, action) => {
       totalAmount: updatedAmount,
     };
   }
+
+  /*========================
+     When Removing Items
+  ========================*/
+  if (action.type === REDUCER_TYPES.removeItem) {
+    // Search for the item in the existing cart items
+    const existingItemIndex = state.items.findIndex(
+      (item) => item.id === action.id
+    );
+    const existingItem = state.items[existingItemIndex];
+
+    // Update total money amount
+    const updatedAmount = state.totalAmount - existingItem.price;
+    let updatedItems;
+    if (existingItem.amount > 1) {
+      const updatedItem = { ...existingItem, amount: existingItem.amount - 1 };
+      updatedItems = [...state.items];
+      updatedItems[existingItemIndex] = updatedItem;
+    } else {
+      updatedItems = state.items.filter((item) => item.id !== existingItem.id);
+    }
+    return {
+      items: updatedItems,
+      totalAmount: updatedAmount,
+    };
+  }
+
+  /*========================
+       Default Fallback
+  ========================*/
   return DEFAULT_CART_STATE;
 };
 const CartContextProvider = (props) => {
