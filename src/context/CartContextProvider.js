@@ -12,10 +12,30 @@ const REDUCER_TYPES = {
 
 const cartReducer = (state, action) => {
   if (action.type === "add") {
-    // concat will return a new array with the added items
-    const updatedItems = state.items.concat(action.payload);
+    // Update total money amount
     const updatedAmount =
       state.totalAmount + action.payload.price * action.payload.amount;
+
+    // Check if item exists or not
+    const existingItemIndex = state.items.findIndex(
+      (item) => item.name === action.payload.name
+    );
+    const existingItem = state.items[existingItemIndex];
+
+    // update item's amount If item exists already
+    let updatedItems;
+    if (existingItem) {
+      const updatedItem = {
+        ...existingItem,
+        amount: existingItem.amount + action.payload.amount,
+      };
+      updatedItems = [...state.items];
+      updatedItems[existingItemIndex] = updatedItem;
+    } else {
+      // concat will return a new array with the added items
+      updatedItems = state.items.concat(action.payload);
+    }
+
     return {
       items: updatedItems,
       totalAmount: updatedAmount,
