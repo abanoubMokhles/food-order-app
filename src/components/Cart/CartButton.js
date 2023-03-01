@@ -16,12 +16,18 @@ const CartButton = (props) => {
   };
 
   useEffect(() => {
+    if (items.length === 0) {
+      return;
+    }
+    setButtonIsHighlighted(true);
+
     const timer = setTimeout(() => {
-      setButtonIsHighlighted(true);
+      setButtonIsHighlighted(false);
     }, 300);
 
+    // It's always a good practice to clean any side effect like timers for ex.
+    // Here we need to clear timer because not cleaning it will result in multiple bumps when clicking fast
     return () => {
-      setButtonIsHighlighted(false);
       clearTimeout(timer);
     };
   }, [items]);
