@@ -10,6 +10,18 @@
     padding: 0;
   }
 }
+.loadingText {
+  color: #8a2b06;
+  font-size: 2rem;
+  text-align: center;
+  font-family: sans-serif;
+}
+.errorText {
+  color: #8a2b06;
+  font-size: 2rem;
+  text-align: center;
+  font-family: sans-serif;
+}
 
 @keyframes meals-appear {
   from {
